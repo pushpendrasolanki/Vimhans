@@ -26,7 +26,7 @@ public class Launch {
 		System.setProperty("webdriver.gecko.driver", "C:/Software/Selenium/Selenium_3/geckodriver.exe");
 
 		driver = new FirefoxDriver();
-		driver.get("https://mainlinetest.vismc.com/gladstone/portal/bloom/login/pages/login_userName.html");
+		driver.get("http://google.com");
 
 	}
 
