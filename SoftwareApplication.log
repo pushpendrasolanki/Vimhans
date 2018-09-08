@@ -1,0 +1,6 @@
+27729 [main] DEBUG devpinoyLogger  - Entering Launch for extraordinary journey
+29612 [main] DEBUG devpinoyLogger  - Fetching the data from excel
+29621 [main] DEBUG devpinoyLogger  - Entering login Entering details
+40668 [main] DEBUG devpinoyLogger  - Navigating to patient enter details
+80860 [main] INFO  devpinoyLogger  - Failure Test
+82635 [main] INFO  devpinoyLogger  - Finish Test
