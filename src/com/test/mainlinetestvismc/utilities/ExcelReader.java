@@ -4,6 +4,8 @@ package com.test.mainlinetestvismc.utilities;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -13,21 +15,22 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelReader {
 
 	String path;
-	public XSSFWorkbook workbook;
+	private XSSFWorkbook workbook;
 	private XSSFSheet sheet;
 	private Row row;
 	private Cell cell;
 	private FileInputStream fis;
+	private FileOutputStream fos;
 
-	public ExcelReader(String path) {
+	public ExcelReader(String path) throws IOException {
 		this.path = path;
 		try {
 			fis = new FileInputStream(new File(path));
-			 
 			workbook = new XSSFWorkbook(fis);
 			sheet = workbook.getSheetAt(0);
 		} catch (Exception e) {
 			e.printStackTrace();
+			fos.close();
 		}
 	}
 
@@ -109,6 +112,7 @@ public class ExcelReader {
 		return String.valueOf(cell.getStringCellValue());
 	}
 
+	// Pass sheet name and row and column to access the data.
 	@SuppressWarnings("static-access")
 	public String getCellData(String SheetName, int ro, int column) {
 
@@ -136,6 +140,27 @@ public class ExcelReader {
 			return str;
 		}
 		return cell.getStringCellValue();
+	}
+
+	public void writeCellData(String SheetName, int ro, int column, String value) {
+
+		int index = workbook.getSheetIndex(SheetName);
+
+		if (index == -1) {
+			return ;
+		}
+		sheet = workbook.getSheetAt(index);
+
+		sheet.getRow(ro).createCell(column).setCellValue(value);
+		try {
+			fos = new FileOutputStream(new File(path));
+			workbook.write(fos);
+			fos.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

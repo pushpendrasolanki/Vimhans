@@ -24,6 +24,9 @@ public class LoginPage {
 
 	@FindBy(id = "password")
 	public WebElement password;
+	
+	@FindBy(id= "errorMsg")
+	public WebElement errorMessage;
 
 	public boolean userNavigateToOTPPage() {
 		if (driver.getTitle().contains(title)) {
@@ -39,6 +42,7 @@ public class LoginPage {
 				Thread.sleep(5000);
 
 				login.click();
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,6 +58,9 @@ public class LoginPage {
 				password.sendKeys(map.get("Password"));
 				Thread.sleep(5000);
 				clickonLoginButton();
+				if(errorMessage.isDisplayed()) {
+					return false;
+				}
 				return true;
 			}
 		} catch (Exception e) {

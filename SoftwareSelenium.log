@@ -1,6 +1,8 @@
-08/37/18 03:37:26 devpinoyLogger Entering Launch for extraordinary journey
-08/37/18 03:37:28 devpinoyLogger Fetching the data from excel
-08/37/18 03:37:28 devpinoyLogger Entering login Entering details
-08/37/18 03:37:39 devpinoyLogger Navigating to patient enter details
-08/38/18 03:38:19 devpinoyLogger Failure Test
-08/38/18 03:38:21 devpinoyLogger Finish Test
+11/30/18 09:30:05 devpinoyLogger Reading data from Excel
+11/30/18 09:30:06 devpinoyLogger Fetching the data from excel
+11/30/18 09:30:06 devpinoyLogger Entering login Entering details
+11/30/18 09:30:16 devpinoyLogger Navigating to Patient page to enter details
+11/31/18 09:31:27 devpinoyLogger Entering the patient detail, and Saving the patient detail.
+11/31/18 09:31:47 devpinoyLogger Verifying the patient detail.
+11/34/18 09:34:41 devpinoyLogger Test Success
+11/34/18 09:34:42 devpinoyLogger Finish Test

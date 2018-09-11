@@ -1,5 +1,8 @@
 package com.test.mainlinetestvismc.pages;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 import java.util.HashMap;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +15,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import com.test.mainlinetestvismc.testcases.StartApplicationAndLogin;
 
 public class AddPatientPage {
 
@@ -107,19 +113,21 @@ public class AddPatientPage {
 
 	@FindBy(id = "btnCancel")
 	public WebElement button_Cancel;
-
+	
+	@FindBy(xpath="/html/body/div[1]/div[3]/div[1]/aside/div/div/div[1]/div/span[2]")
+	public WebElement patientAdded;
+	
+	@FindBy(xpath="/html/body/div[1]/div[3]/div[1]/aside/div/div/div[1]/div/span[1]")
+	public WebElement patientBack;
+	
+	@FindBy(xpath ="/html/body/div[1]/div[3]/div[2]/div[2]/div[1]/div[1]")
+	public WebElement patientgrid;
+	//This method will click on add button at patient
 	public boolean userNavigateToAddPage() throws InterruptedException {
-//		WebDriverWait wait=new WebDriverWait(driver, 100);
-//		WebElement addpatientlink;
-//		addpatientlink= wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
-//				"html body div.wrapper2 div#menu-content-container.col-sm-12.nopadding div#page-content.page-content div#menu-content.login_patient_list-1 div.col-md-4 div.sidebar-filter.p-md button#DASHBOARD_TEXT_PORTAL_ADD_PATIENT.btn.btn-secondary.btn-block")));
-//	//	addpatientlink.click();
-//		driver.findElement(By.cssSelector(
-//				"html body div.wrapper2 div#menu-content-container.col-sm-12.nopadding div#page-content.page-content div#menu-content.login_patient_list-1 div.col-md-4 div.sidebar-filter.p-md button#DASHBOARD_TEXT_PORTAL_ADD_PATIENT.btn.btn-secondary.btn-block"))
-//			.click();
+
 		
-		driver.manage().timeouts().implicitlyWait(40,TimeUnit.SECONDS) ;
 		
+		Thread.sleep(55000);
 		
 		if (driver.findElement(By.cssSelector(
 				"html body div.wrapper2 div#menu-content-container.col-sm-12.nopadding div#page-content.page-content div#menu-content.login_patient_list-1 div.col-md-4 div.sidebar-filter.p-md button#DASHBOARD_TEXT_PORTAL_ADD_PATIENT.btn.btn-secondary.btn-block"))
@@ -127,13 +135,13 @@ public class AddPatientPage {
 			driver.findElement(By.cssSelector(
 					"html body div.wrapper2 div#menu-content-container.col-sm-12.nopadding div#page-content.page-content div#menu-content.login_patient_list-1 div.col-md-4 div.sidebar-filter.p-md button#DASHBOARD_TEXT_PORTAL_ADD_PATIENT.btn.btn-secondary.btn-block"))
 					.click();
-			Thread.sleep(5000);
+			Thread.sleep(15000);
+			if(!firstName.isDisplayed()) {
+				return false;
+			}
 			return true;
 		} 
-			//else {
-//			System.out.println("Unable to locate the add page");
-//			
-//		}
+
 		else {
 			return false;
 		}
@@ -227,7 +235,25 @@ public class AddPatientPage {
 	//	tertiaryProv.sendKeys(patientdata.get("TertiaryProvider"));
 		button_Save.click();
 		///html/body/div[1]/div[3]/div[2]/div[1]/div/ul/li[4]/a/span
-		Thread.sleep(5000);
+		Thread.sleep(15000);
+	}
+	public boolean verifyPatient(HashMap<String, String> patientdata) {
+		
+		if (patientAdded.isDisplayed()) {
+			String patientname[]=patientAdded.getText().split("\n");
+			if(patientname[0]
+					.equalsIgnoreCase((patientdata.get("FirstName") + " " + patientdata.get("LastName")))) {
+				System.out.println("matches");
+			}
+			Assert.assertTrue(
+					patientname[0]
+							.equals((patientdata.get("FirstName") + " " + patientdata.get("LastName"))),
+					"Verify patient not added");
+
+			patientBack.click();
+
+		}
+		return true;
 	}
 
 }

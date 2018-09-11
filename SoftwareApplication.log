@@ -1,6 +1,8 @@
-27729 [main] DEBUG devpinoyLogger  - Entering Launch for extraordinary journey
-29612 [main] DEBUG devpinoyLogger  - Fetching the data from excel
-29621 [main] DEBUG devpinoyLogger  - Entering login Entering details
-40668 [main] DEBUG devpinoyLogger  - Navigating to patient enter details
-80860 [main] INFO  devpinoyLogger  - Failure Test
-82635 [main] INFO  devpinoyLogger  - Finish Test
+25208 [main] DEBUG devpinoyLogger  - Reading data from Excel
+25415 [main] DEBUG devpinoyLogger  - Fetching the data from excel
+25464 [main] DEBUG devpinoyLogger  - Entering login Entering details
+36282 [main] DEBUG devpinoyLogger  - Navigating to Patient page to enter details
+106797 [main] DEBUG devpinoyLogger  - Entering the patient detail, and Saving the patient detail.
+126988 [main] DEBUG devpinoyLogger  - Verifying the patient detail.
+300550 [main] INFO  devpinoyLogger  - Test Success
+302072 [main] INFO  devpinoyLogger  - Finish Test
